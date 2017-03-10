@@ -1,26 +1,29 @@
 #pragma once
+
 #include <iostream>
+
 using namespace std;
 
-class Piece(){
+class Piece {
 	protected:
 		int x;
 		int y;
-	public :
-		
-		Piece(x,y);
+
+	public:
+		// Constructor.
+		Piece(int, int);
+		// Setters.
 		void setX(int);
 		void setY(int);
+		// Getters.
 		int getY();
 		int getX();
+		// Métodos polimórficos.
 		virtual void createTable();
 		virtual bool validatecolor();
-		//falta definir
-		virtual void eat();
+		virtual void eat(); //falta definir
+		// Destructor.
 		~Piece();
-
-
-
 };
 
 

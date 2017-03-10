@@ -14,28 +14,28 @@ void Piece::setY(int y) {
 	this -> y = y;
 }
 
-int getX() {
+int Piece::getX() {
 	return x;
 }
 
-int getY() {
+int Piece::getY() {
 	return y;
 }
 
-virtual void createTable(){
+void Piece::createTable(){
 
 }
 
-virtual bool validatecolor() {
+bool Piece::validatecolor() {
 
 }
 
 //falta definir
 
-virtual void eat() {
+void Piece::eat() {
 
 }
 
-~Piece() {
+Piece::~Piece() {
 
 }

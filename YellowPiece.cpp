@@ -1,6 +1,6 @@
 #include "YellowPiece.h"
 
-YellowPiece::YellowPiece(int x, int y){
+YellowPiece::YellowPiece(int x, int y) : Piece(x, y) {
 	this->x =x;
 	this->y=y;
 }
