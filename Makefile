@@ -1,5 +1,5 @@
 main:	Piece.o BluePiece.o RedPiece.o GreenPiece.o YellowPiece.o main.o
-	g++ Piece.o BluePiece.o RedPiece.o GreenPiece.o YellowPiece.o main.o -o main
+	g++ Piece.o BluePiece.o RedPiece.o GreenPiece.o YellowPiece.o main.o -lncurses -o main
 
 main.o:	main.cpp
 	g++ -c main.cpp
