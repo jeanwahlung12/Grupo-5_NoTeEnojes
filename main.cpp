@@ -19,6 +19,7 @@ bool setNewPiece(int);
 
 int main() {
 	string** matrix;
+	string type;
 	vector<Piece*> player1;
 	vector<Piece*> player2;
 	int dice1, dice2, dices, option, turn = 0, COUNT1 = 0, COUNT2 = 0;
@@ -31,21 +32,25 @@ int main() {
 		for (int i = 0; i < 4; ++i) {
 			Piece* greenPiece = new GreenPiece(0, 0);
 			player1.push_back(greenPiece);
+			type = "G";
 		}
 	} else if (option == 2) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* redPiece = new RedPiece(0, 14);
 			player1.push_back(redPiece);
+			type = "R";
 		}
 	} else if (option == 3) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* bluePiece = new BluePiece(14, 14);
 			player1.push_back(bluePiece);
+			type = "B";
 		}
 	} else if (option == 4) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* yellowPiece = new YellowPiece(14, 0);
 			player1.push_back(yellowPiece);
+			type = "Y";
 		}
 	} else {
 		main();
@@ -59,21 +64,25 @@ int main() {
 		for (int i = 0; i < 4; ++i) {
 			Piece* greenPiece = new GreenPiece(0, 0);
 			player2.push_back(greenPiece);
+			type = "G";
 		}
 	} else if (option == 2) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* redPiece = new RedPiece(0, 14);
 			player2.push_back(redPiece);
+			type = "R";
 		}
 	} else if (option == 3) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* bluePiece = new BluePiece(14, 14);
 			player2.push_back(bluePiece);
+			type = "B";
 		}
 	} else if (option == 4) {
 		for (int i = 0; i < 4; ++i) {
 			Piece* yellowPiece = new YellowPiece(14, 0);
 			player2.push_back(yellowPiece);
+			type = "Y";
 		}
 	} else {
 		main();
@@ -87,38 +96,35 @@ int main() {
 		dice1 = getDice();
 		dice2 = getDice();
 		dices = dice1 + dice2;
-		cout << dices;
 
 		if (turn % 2 == 0) { // Turno jugador 1.
 			if (setNewPiece(dices) && COUNT1 < 4) {
 				piece = player1.at(COUNT1);
 
 				matrix[piece -> getX()][piece -> getY()] = "+";
-				cout << "PLAYER1";
 				COUNT1++;
-			} else {
-				cout << "NO!";
 			}
 		} else { // Turno jugador 2.
 			if (setNewPiece(dices) && COUNT2 < 4) {
 				piece = player2.at(COUNT2);
 
 				matrix[piece -> getX()][piece -> getY()] = "-";
-				cout << "PLAYER2";
 				COUNT2++;
-			} else {
-				cout << "BYE!";
 			}
 		}
 
 		turn++;
 	} while (!setNewPiece(dices));
 
+	matrix = piece -> move(matrix, piece -> getX(), piece -> getY(), dices, type);
+
 	for (int i = 0; i < 15; ++i) {
 		for (int j = 0; j < 15; ++j) {
 			cout << matrix[i][j];
 		}
+		cout << endl;
 	}
+
 	return 0;
 }
 
@@ -128,6 +134,13 @@ string** initializeTable(){
 	for (int i = 0; i < 15; ++i) {
 		matrix[i]= new string[15];// inicializando matriz
 	}
+
+
+	for (int i = 0; i < 15; ++i) {
+		for (int j = 0; j < 15; ++j) {
+			matrix[i][j] = "~";
+		}
+	}	
 
 	initscr();
    	start_color();

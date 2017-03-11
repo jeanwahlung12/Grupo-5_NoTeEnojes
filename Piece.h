@@ -22,7 +22,7 @@ class Piece {
 		// Métodos polimórficos.
 		virtual void createTable();
 		virtual bool validateColor();
-		virtual string** move(string**, int, int, int);
+		virtual string** move(string**, int, int, int, string);
 		virtual void eat(); //falta definir
 		// Destructor.
 		~Piece();
